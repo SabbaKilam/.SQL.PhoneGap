@@ -48,7 +48,7 @@ body{
 }
 
 #outerContainer{
-    width: 290px;
+    width: 270px;
     height: 100%;
     margin: 0 auto;
     padding: 12px 25px 25px 25px;
@@ -281,7 +281,7 @@ body{
     padding: 15px 0 10px;
     border: 1px solid lightgray;
     border-radius: 5px;
-    font-size: 1.05em;
+    font-size: 0.95em;
 }
 #matchReportDiv{
     margin-left: 50px;
