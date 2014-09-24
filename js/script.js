@@ -54,6 +54,7 @@ var currentFilename = "test.txt";
 var saveFromUrl = "http://qndsql.com/dbfiles/test/" + currentFilename;
 var currentQuery = "";
 var raw = "";
+var progBarWidth = 150;
 var resultSetCsv = "";
 var fieldCount = "";
 //var recordCount = "";
@@ -282,10 +283,10 @@ function showUploadProgress(xhr){
                 S(uploadProgress).border = '0 solid hsla(0, 100%, ' + (90*fraction +10) + '% ,0)'; //1px?
                 //====================================================
                 //=Some older browsers will widen the entire div, so we must shorten it back:
-                S(uploadProgress).width = 250*(1 - fraction)+ "px";
+                S(uploadProgress).width = progBarWidth*(1 - fraction)+ "px";
                 var temp = O(uploadProgress).offsetTop;               
                 //==============================================                
-                S(uploadProgress).borderLeft = parseInt(250*fraction) +
+                S(uploadProgress).borderLeft = parseInt(progBarWidth*fraction) +
                 'px solid hsla(0, 100%, ' + (90*fraction+10) + '% ,1)';
                 //var temp = O(uploadProgress).offsetTop;  
                 // ===============================================
@@ -425,8 +426,9 @@ O(ajaxSendQuery).onreadystatechange = function(){
 };
 //==========================
 function flashFileLoadSuccess(){
+    S(uploadProgress).width = 0;	
     S(uploadProgress).border = '0 solid white';
-    S(uploadProgress).borderLeft = 250 + 'px solid white';
+    S(uploadProgress).borderLeft = progBarWidth + 'px solid white';
     O(percentUpload).innerHTML = "100 %";
     S(percentUpload).color = "white";    
     S(uploadProgress).opacity = 1;
@@ -739,9 +741,9 @@ function showProgress(fraction){
         Some older browsers will widen the entire div, so we must shorten it back.
         Will not work id CSS has box-sizing: border-box active.
     */
-    S(uploadProgress).width = 250*(1 - fraction)+ "px";    
+    S(uploadProgress).width = progBarWidth*(1 - fraction)+ "px";    
     //--------------------------------------------------    
-    S(uploadProgress).borderLeft = parseInt(250*fraction) + 'px solid hsla(0, 100%, ' + (90*fraction+10) + '% ,1)';
+    S(uploadProgress).borderLeft = parseInt(progBarWidth*fraction) + 'px solid hsla(0, 100%, ' + (90*fraction+10) + '% ,1)';
     //-------------------------------------------------------------------------
     S(percentUpload).color = 'hsla(0, 100%, ' + (90*fraction+10) + '% ,1)';   
     O(percentUpload).innerHTML = parseInt(fraction*100)+' %';
